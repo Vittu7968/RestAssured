@@ -1,5 +1,12 @@
 package com.rest.pojo.assignment;
 
+import java.util.HashMap;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@JsonIgnoreProperties(value ={"id", "hp"}, allowSetters = true)
 public class users_rootpojo {
 	
 	Address address;
@@ -7,9 +14,21 @@ public class users_rootpojo {
 	private String name;
 	private String username;
 	private String email;
-	
+//	@JsonInclude(JsonInclude.Include.NON_DEFAULT)
+	@JsonIgnore
 	private int id;
 	
+//	@JsonInclude(JsonInclude.Include.NON_EMPTY)
+	private HashMap<String, String> hp;
+	
+	public HashMap<String, String> getHp() {
+		return hp;
+	}
+
+	public void setHp(HashMap<String, String> hp) {
+		this.hp = hp;
+	}
+
 	public int getId() {
 		return id;
 	}
