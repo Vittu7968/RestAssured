@@ -1,5 +1,7 @@
 package com.rest.assignment;
 
+import java.util.HashMap;
+
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.hamcrest.core.IsNull;
@@ -49,6 +51,13 @@ RequestSpecBuilder reqspecbuilder=new RequestSpecBuilder();
 		Geo geo=new Geo("-37.3159", "81.1496");
 		users_rootpojo ur=new users_rootpojo("Leanne Graham", "Bret", "Sincere@april.biz", addr, geo);
 		
+		
+		//This piece of code is added to understand NON_EMPTY part in JsonInclude
+		HashMap<String, String> newHp=new HashMap<String, String>();
+		ur.setHp(newHp);
+		
+		//*****
+		
 		users_rootpojo ur2=RestAssured
 		.given()
 		.body(ur)
@@ -59,6 +68,8 @@ RequestSpecBuilder reqspecbuilder=new RequestSpecBuilder();
 		.as(users_rootpojo.class);
 		
 		MatcherAssert.assertThat("Id is not null",ur2.getId(), Matchers.notNullValue());
+		
+		System.out.println(ur2.getId());
 		
 		
 	}
